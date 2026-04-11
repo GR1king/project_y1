@@ -1,3 +1,3 @@
-Yarlik - serial 
+projekt_1yarlik - serial 
 
-LCD - LCD duh
+projekt_1LCD - LCD
