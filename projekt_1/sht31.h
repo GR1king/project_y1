@@ -1,14 +1,17 @@
-#ifndef __sht31_h
-#define __sht31_h
-//VI ANVÄNDER SHT31
-#include "gd32vf103.h"
+#ifndef __SHT31_H
+#define __SHT31_H
 
-#define temp_high 28 //ändra senare
-#define temp_low 18 
+#include "gd32vf103.h"
+#include <stdint.h>
+
+
+#define temp_high 28
+#define temp_low  18
+
 
 void i2c_init_setup(void);
-int  sht31_read(int16_t *temp_raw, uint16_t *hum_raw);
-void sht31_convert(int16_t temp_raw, uint16_t hum_raw,
-int *temp_c, int *hum_pct);
+int sht31_read(uint16_t *temp_raw, uint16_t *hum_raw);
+void sht31_convert(uint16_t temp_raw, uint16_t hum_raw, int *temp_c, int *hum_pct);
+float sht31_wet_bulb(float temp_c, float hum_pct);
 
 #endif
