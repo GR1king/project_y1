@@ -1,0 +1,101 @@
+#include "gd32vf103.h"
+#include "drivers.h"
+#include "adc.h"
+#include "lcd.h"
+#include "usart.h"
+#include "pwm.h"
+#define EI 1
+#define DI 0
+
+
+int main(){
+	uint32_t vindData; //sparar vinddatan
+	int fPosition = 0;
+	int position = 0;
+	int done = 0;
+	int riktning = 0;
+	
+	
+	
+
+
+	/*användbara funktioner för motorn*/
+	//gpio_init(GPIOX, GPIO_MODE_OUT_X, GPIO_OSPEED_XMHZ, GPIO_PIN_X);
+	//gpio_output_bit_get(GPIOX,X(nummer))
+	//gpio_input_bit_get(GPIOX,X(nummer));
+	//gpio_bit_set()
+	//gpio_bit_reset(GPIOX,X(nummer));
+	//rcu_periph_clock_enable(RCU_GPIOB);
+	//T1setPWMmotorB();
+	/*---------------------------------------------------------------*/
+
+	rcu_periph_clock_enable(RCU_GPIOB);
+	rcu_periph_clock_enable(RCU_GPIOA);
+
+	//Pinben A6 och A7 är upptagna//
+
+	/*inputs*/
+
+	gpio_init(GPIOB, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_0);; // B0 är den pinnen som ska ta emot data från vindsensorn
+	/*outputs*/
+
+	T1powerUpInitPWM(0x6); //gör A1 och A2 på mcun är PWM outputsen som man ändra på styrkan 0%-100%. Det är outputsen till själva h-bryggan som ska driva motorn
+	//T1setPWMch1((movement / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
+	//T1setPWMch2(0);
+
+	while(1){
+
+		vindData = gpio_input_bit_get(GPIOB,GPIO_PIN_0);
+
+		if(vindData>0){
+
+			if(position < vindData){
+				riktning = 0;
+			} else {
+				riktning = 1;
+			}
+
+			if(position == vindData){
+				T1setPWMch1(1);
+				T1setPWMch2(1);
+			} else {
+				
+				switch(riktning){
+				case 0:
+				if(position > (vindData/2)){
+					T1setPWMch1(10);
+					T1setPWMch2(0);
+					position = position + 1;
+				} else {
+					T1setPWMch1(30);
+					T1setPWMch2(0);
+					position = position + 1;
+				};break;
+
+				case 1:
+
+				if((position/2) > vindData){
+					T1setPWMch2(10);
+					T1setPWMch1(0);
+					position = position + -1;
+				} else {
+					T1setPWMch2(30);
+					T1setPWMch1(0);
+					position = position - 1;
+
+				} break;
+			}
+		}
+	} else {
+		if(position != fPosition){
+			T1setPWMch2(30);
+			T1setPWMch1(0);
+			position=position-1;
+		} else {
+			T1setPWMch2(1);
+			T1setPWMch1(1);
+		}
+	}
+}
+}
+
