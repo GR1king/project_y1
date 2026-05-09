@@ -3,6 +3,7 @@
 #include "drivers.h"     /* timer functions */
 #include "lcd.h"         /* LCD functions */
 #include "vind.h"        /* vind sensor functions */
+#include "led.h"        /* led functions */
 
 /* Wait for a number of milliseconds */
 static void delay_ms(int ms) {
