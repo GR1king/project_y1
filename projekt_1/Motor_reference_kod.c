@@ -15,7 +15,7 @@ void rotera(int pinMal){
 		T1setPWMch1((30 / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
 		T1setPWMch2(0);
 		vinkel = gpio_input_bit_get(GPIOB,pinMal); //Tar in status från plattan som ska nuddas av metallstaven
-	} while (vinkel != 0); //checkar om den är förändrad dvs om pinnen är där 
+	} while (vinkel == 1); //checkar om den är förändrad dvs om pinnen är framme
 
 }
 
@@ -46,14 +46,14 @@ int main(){
 
 	/*inputs*/
 
-	gpio_init(GPIOB, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_1); //Dessa initerar bara pinben för olika riktningarna
-	gpio_init(GPIOB, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_2);
-	gpio_init(GPIOB, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_3);
-	gpio_init(GPIOB, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_4);
-	gpio_init(GPIOB, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_5); 
-	gpio_init(GPIOB, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_6);
-	gpio_init(GPIOB, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_7);
-	gpio_init(GPIOB, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, GPIO_PIN_8);
+	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_1); //Dessa initierar bara pinben för olika riktningarna
+	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_2);
+	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_3);
+	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_4);
+	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_5); 
+	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_6);
+	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_7);
+	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_8);
 
 	gpio_init(GPIOA, GPIO_MODE_AIN, GPIO_OSPEED_50MHZ, GPIO_PIN_8); //möjligtvis för att ta emot vinddata behöver hjälp
 	/*outputs*/
@@ -65,7 +65,7 @@ int main(){
 		T1setPWMch1((30 / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
 		T1setPWMch2(0);
 		lage = gpio_input_bit_get(GPIOB,1); //Tar in status från plattan som ska nuddas av metallstaven
-	} while (lage != 0); //checkar om den är förändrad dvs om pinnen är där 
+	} while (lage == 0); //checkar om den är förändrad dvs om pinnen är där 
 			
 	while(1){
 
@@ -113,7 +113,7 @@ int main(){
 				onskatLage = 1;
 			}
 
-			//här är en switch för vilken platta den ska rotera till (siffrorna som skickas in är bara placeholders för nu)
+			//här är en switch för vilken platta den ska rotera till (siffrorna som skickas in är bara en placeholder för)
 
 			switch(onskatLage){
 
