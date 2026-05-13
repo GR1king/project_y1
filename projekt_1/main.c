@@ -46,7 +46,7 @@ int main(void) {
     /* start I2C */
     sht31_init_setup();
     vind_init_setup();
-    
+    led_init();
         /* main loop */
 
     while (1) {
