@@ -59,7 +59,11 @@ void T1powerUpInitPWM(uint16_t ch){
 }
 
 void T1setPWMch2(int value){
-    timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_0,value);
+    timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_2,value);
+}
+
+void T1setPWMch1(int value){
+    timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_1,value);
 }
 
 void T1setPWMmotorB(int throttel){
