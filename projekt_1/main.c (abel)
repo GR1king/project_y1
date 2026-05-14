@@ -3,11 +3,11 @@
 #include "drivers.h"     /* timer functions */
 #include "lcd.h"         /* LCD functions */
 #include "vind.h"        /* vind sensor functions */
-#include "pwm.h"         /* Motor functions*/
+#include "led.h"        /* led functions */
+#include "pwm.h"
 
-#define EXTRA 5
-#define SPEED 1
-
+#define EXTRA 10        //exktra vinkel för safezone
+#define SPEED 5         // procent av hastigheten motorn ska ha
 
 /* Wait for a number of milliseconds */
 static void delay_ms(int ms) {
@@ -18,6 +18,7 @@ static void delay_ms(int ms) {
         ms--;
     }
 }
+
 
 int main(void) {
     uint16_t temp_raw;   /* raw temperature from sensor */
@@ -50,10 +51,12 @@ int main(void) {
     /* start I2C */
     sht31_init_setup();
     vind_init_setup();
+    led_init();
 
-    /*Initsera Motor*/
-    T1powerUpInitPWM(0x6); //gör A1 och A2 på mcun är PWM outputsen som man ändra på styrkan 0%-100%. Det är outputsen till själva h-bryggan som ska driva motorn
     
+    /*Initsera Motor*/
+    T1powerUpInitPWM(0xc); //gör A2 och A3 på mcun är PWM outputsen som man ändra på styrkan 0%-100%. Det är outputsen till själva h-bryggan som ska driva motorn
+
         /* main loop */
 
     while (1) {
@@ -73,6 +76,15 @@ int main(void) {
             sht31_convert(temp_raw, hum_raw, &temp_c, &hum_pct);
             wet_bulb = sht31_wet_bulb((float)temp_c, (float)hum_pct);
 
+            if(wet_bulb < 30)            //LED stängs av om wetbulb är mindre än -2.8
+            {
+                led_on();
+            }
+            else
+            {
+                led_off();
+            }
+
             /* show temperature */
             if (temp_c < 0) {
                 temp_abs = -temp_c;                            /* make it positive */
@@ -91,6 +103,8 @@ int main(void) {
             LCD_ShowNum1(75, 30, wet_bulb, 4, GREEN);
             LCD_ShowChar(115, 30, 'C', OPAQUE, GREEN);/* show % */
 
+
+
             /* show if temperature is high, low, or normal */
             if (temp_c > temp_high) {
                 LCD_ShowStr(0, 45, (u8 *)"Temp too high", RED, OPAQUE);
@@ -106,44 +120,28 @@ int main(void) {
         }
         if (ret_vind == 0) {
             vind_read_degrees(vind_raw, &vind_deg);
-            angles[index] = vind_deg; 
-            index++;
-            
-            if(index >= 10)
-            {
-                new_average = getAverageAngle(angles, 10);
-                average_flag = 1;
-                index = 0;
-            }
-        
-                if(average_flag == 1)
-                {
-                    average_flag = 0;
-                    LCD_ShowNum(120, 60, new_average,3 , CYAN);  /* show wind direction in degrees */
-                    LCD_ShowChar(150, 60, 'D', OPAQUE, CYAN); 
-                }
+            LCD_ShowNum(0, 60, vind_deg, 3, CYAN);
+
         } else {
             LCD_ShowStr(120, 60, (u8 *)"Error", RED, OPAQUE);
         }
 
+
+
         LCD_Wait_On_Queue();   /* make sure LCD finishes drawing */
 
 
-        //If the canon is facing the wrong direction turn right
-        if(ret_vind<= 180-EXTRA){
+// Använd vind_deg som redan lästs och beräknats ovan
 
-	        T1setPWMch1(( SPEED / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
-	        T1setPWMch2(0);
-
-        }
-
-        //If the canon is facing the wrong direction turn left
-        if (ret_vind>= 180+EXTRA)
-        {
-	        T1setPWMch2(( SPEED / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
-	        T1setPWMch1(0);
-        }
-        
-        //delay_ms(1000);        /* wait 1 second */
+    if (vind_deg <= 180 - EXTRA) {  // Om vindriktningen är mindre än eller lika med 180 vrider motorn i en riktning
+        T1setPWMmotorB(SPEED); 
+    } else if (vind_deg >= 180 + EXTRA) { // Om vindriktningen är större än eller lika med 180 vrider motorn i motsatt riktning
+        T1setPWMmotorB(-SPEED);
+    } else {
+        T1setPWMmotorB(0); // Om vindriktningen är inom safezone (180 ± EXTRA) stannar motorn
     }
+
+    delay_ms(250);        /* wait 1/4 of a second */
+    }
+
 }
