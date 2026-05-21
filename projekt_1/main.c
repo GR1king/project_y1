@@ -66,14 +66,18 @@ int main(void) {
             sht31_convert(temp_raw, hum_raw, &temp_c, &hum_pct);
             wet_bulb = sht31_wet_bulb((float)temp_c, (float)hum_pct);
 
-            if(wet_bulb < 30)            //LED stängs av om wetbulb är mindre än -2.8
-            {
-                led_on();
-            }
-            else
-            {
-                led_off();
-            }
+int x_min = 30;
+int x_max = 150;
+
+if(wet_bulb < 30 && new_average > x_min && new_average < x_max)
+{
+    led_on();
+}
+else
+{
+    led_off();
+}
+
 
             /* show temperature */
             if (temp_c < 0) {
