@@ -4,6 +4,7 @@
 #include "lcd.h"
 #include "usart.h"
 #include "pwm.h"
+#include "vind.h"
 #define EI 1
 #define DI 0
 
