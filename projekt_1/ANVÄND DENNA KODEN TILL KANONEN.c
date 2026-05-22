@@ -67,9 +67,9 @@ int main(void) {
 	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_8); ///B8 = 90 grader
 	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_9); //B9 = 135 grader
 	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_5); //B5 = 180 grader
-	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_6); //B4 = 225 grader
-	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_7); //A8 = 270 grader
-	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_8); //B12 = 315 grader
+	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_4); //B4 = 225 grader
+	gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_12); //A8 = 270 grader
+	gpio_init(GPIOA, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_8); //B12 = 315 grader
 
 	
 	T1powerUpInitPWM(0x0C); //gör A2 och A3 på mcun är PWM outputsen som man ändra på styrkan 0%-100%. Det är outputsen till själva h-bryggan som ska driva motorn
@@ -241,8 +241,8 @@ void rotera(int pinMal,int seMinne,int gradMal){
 						T1setPWMch3(0);break; //checkar om den är förändrad dvs om pinnen är framme
 				} else {
 					do{
-						T1setPWMch2((5 / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
-						T1setPWMch3(0);
+						T1setPWMch3((5 / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
+						T1setPWMch2(0);
 						vinkel = gpio_input_bit_get(GPIOB,GPIO_PIN_11); //Tar in status från plattan som ska nuddas av metallstaven
 						} while (vinkel == 0);T1setPWMch2(0);
 						T1setPWMch3(0); //checkar om den är förändrad dvs om pinnen är framme
@@ -316,7 +316,7 @@ void rotera(int pinMal,int seMinne,int gradMal){
 			do{
 				T1setPWMch2((5 / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
 				T1setPWMch3(0);
-				vinkel = gpio_input_bit_get(GPIOB,GPIO_EVENT_PIN_5); //Tar in status från plattan som ska nuddas av metallstaven
+				vinkel = gpio_input_bit_get(GPIOB,GPIO_PIN_5); //Tar in status från plattan som ska nuddas av metallstaven
 				} while (vinkel == 0);T1setPWMch2(0);
 						T1setPWMch3(0);break; //checkar om den är förändrad dvs om pinnen är framme
 				} else {
@@ -337,14 +337,14 @@ void rotera(int pinMal,int seMinne,int gradMal){
 			do{
 				T1setPWMch2((5 / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
 				T1setPWMch3(0);
-				vinkel = gpio_input_bit_get(GPIOB,GPIO_EVENT_PIN_6); //Tar in status från plattan som ska nuddas av metallstaven
+				vinkel = gpio_input_bit_get(GPIOB,GPIO_PIN_4); //Tar in status från plattan som ska nuddas av metallstaven
 				} while (vinkel == 0);T1setPWMch2(0);
 						T1setPWMch3(0);break; //checkar om den är förändrad dvs om pinnen är framme
 				} else {
 					do{
 						T1setPWMch3((5 / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
 						T1setPWMch2(0);
-						vinkel = gpio_input_bit_get(GPIOB,GPIO_PIN_6); //Tar in status från plattan som ska nuddas av metallstaven
+						vinkel = gpio_input_bit_get(GPIOB,GPIO_PIN_4); //Tar in status från plattan som ska nuddas av metallstaven
 						} while (vinkel == 0);T1setPWMch2(0);
 						T1setPWMch3(0); //checkar om den är förändrad dvs om pinnen är framme
 						} break;
@@ -358,14 +358,14 @@ void rotera(int pinMal,int seMinne,int gradMal){
 			do{
 				T1setPWMch2((5 / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
 				T1setPWMch3(0);
-				vinkel = gpio_input_bit_get(GPIOB,GPIO_EVENT_PIN_7); //Tar in status från plattan som ska nuddas av metallstaven
+				vinkel = gpio_input_bit_get(GPIOB,GPIO_PIN_12); //Tar in status från plattan som ska nuddas av metallstaven
 				} while (vinkel == 0);T1setPWMch2(0);
 						T1setPWMch3(0);break; //checkar om den är förändrad dvs om pinnen är framme
 				} else {
 					do{
 						T1setPWMch3((5 / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
 						T1setPWMch2(0);
-						vinkel = gpio_input_bit_get(GPIOB,GPIO_PIN_7); //Tar in status från plattan som ska nuddas av metallstaven
+						vinkel = gpio_input_bit_get(GPIOB,GPIO_PIN_12); //Tar in status från plattan som ska nuddas av metallstaven
 						} while (vinkel == 0); //checkar om den är förändrad dvs om pinnen är framme
 						T1setPWMch2(0);
 						T1setPWMch3(0);
@@ -380,14 +380,14 @@ void rotera(int pinMal,int seMinne,int gradMal){
 			do{
 				T1setPWMch2((5 / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
 				T1setPWMch3(0);
-				vinkel = gpio_input_bit_get(GPIOB,GPIO_EVENT_PIN_8); //Tar in status från plattan som ska nuddas av metallstaven
+				vinkel = gpio_input_bit_get(GPIOA,GPIO_PIN_8); //Tar in status från plattan som ska nuddas av metallstaven
 				} while (vinkel == 0);T1setPWMch2(0);
 						T1setPWMch3(0);break; //checkar om den är förändrad dvs om pinnen är framme
 				} else {
 					do{
 						T1setPWMch3((5 / 100.0) * 16000);  // Den sätter in movement till ch1 alltså A1 och sätter ch2 alltså A2 till 0 så den snurrar åt en riktning
 						T1setPWMch2(0);
-						vinkel = gpio_input_bit_get(GPIOB,GPIO_PIN_8); //Tar in status från plattan som ska nuddas av metallstaven
+						vinkel = gpio_input_bit_get(GPIOA,GPIO_PIN_8); //Tar in status från plattan som ska nuddas av metallstaven
 						} while (vinkel == 0); //checkar om den är förändrad dvs om pinnen är framme
 						T1setPWMch2(0);
 						T1setPWMch3(0);
