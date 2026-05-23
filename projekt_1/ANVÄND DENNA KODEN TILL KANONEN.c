@@ -65,13 +65,14 @@ int main(void) {
     rcu_periph_clock_enable(RCU_GPIOA);
 
     gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_11); // 0 och 360 grader
-    gpio_init(GPIOA, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_5);  // 45 grader
-    gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_8);  // 90 grader
-    gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_9);  // 135 grader
+    gpio_init(GPIOA, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_5);  // 315 grader
+    gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_8);  // 270 grader
     gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_5);  // 180 grader
-    gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_4);  // 225 grader
-    gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_12); // 270 grader
-    gpio_init(GPIOA, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_8);  // 315 grader
+    gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_4);  // 135 grader
+    gpio_init(GPIOB, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_12); // 45 grader
+    gpio_init(GPIOA, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_8);  // 90 grader
+    gpio_init(GPIOA, GPIO_MODE_IPD, GPIO_OSPEED_50MHZ, GPIO_PIN_7);  // 225 grader
+
 
     T1powerUpInitPWM(0x0C);
 
@@ -230,7 +231,7 @@ void rotera(int pinMal, int nuvarandeLage) {
             }
             break;
 
-        case 2:
+        case 8:
             if (pinMal < nuvarandeLage) {
                 do {
                     T1setPWMch2((5 / 100.0) * 16000);
@@ -255,7 +256,7 @@ void rotera(int pinMal, int nuvarandeLage) {
             }
             break;
 
-        case 3:
+        case 7:
             if (pinMal < nuvarandeLage) {
                 do {
                     T1setPWMch2((5 / 100.0) * 16000);
@@ -280,13 +281,13 @@ void rotera(int pinMal, int nuvarandeLage) {
             }
             break;
 
-        case 4:
+        case 6:
             if (pinMal < nuvarandeLage) {
                 do {
                     T1setPWMch2((5 / 100.0) * 16000);
                     T1setPWMch3(0);
 
-                    vinkel = gpio_input_bit_get(GPIOB, GPIO_PIN_9);
+                    vinkel = gpio_input_bit_get(GPIOA, GPIO_PIN_7);
                 } while (vinkel == 0);
 
                 T1setPWMch2(1);
@@ -330,7 +331,7 @@ void rotera(int pinMal, int nuvarandeLage) {
             }
             break;
 
-        case 6:
+        case 4:
             if (pinMal < nuvarandeLage) {
                 do {
                     T1setPWMch2((5 / 100.0) * 16000);
@@ -355,7 +356,7 @@ void rotera(int pinMal, int nuvarandeLage) {
             }
             break;
 
-        case 7:
+        case 2:
             if (pinMal < nuvarandeLage) {
                 do {
                     T1setPWMch2((5 / 100.0) * 16000);
@@ -380,7 +381,7 @@ void rotera(int pinMal, int nuvarandeLage) {
             }
             break;
 
-        case 8:
+        case 3:
             if (pinMal < nuvarandeLage) {
                 do {
                     T1setPWMch2((5 / 100.0) * 16000);
