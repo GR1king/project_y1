@@ -81,17 +81,14 @@ int main(void) {
     while (1) {
 
     LCD_Clear(BLACK);
-    LCD_ShowStr(0, 0, (u8 *)"Loop start", GREEN, OPAQUE);
-    LCD_Wait_On_Queue();
+
         ret_sht35 = sht31_read(&temp_raw, &hum_raw);
 
-        LCD_ShowStr(0, 15, (u8 *)"VINDSENSORN HAR STANNAT", GREEN, OPAQUE);
-        LCD_Wait_On_Queue();
+
 
         ret_vind = vind_read_raw(&vind_raw);
       
-        LCD_ShowStr(0, 30, (u8 *)"After wind", GREEN, OPAQUE);
-        LCD_Wait_On_Queue();
+
 
 
   
