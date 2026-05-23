@@ -36,13 +36,8 @@ int main(void) {
     uint32_t lage;
     int toggle = 0;
     int grader = 0;
-    int bGrader = 0;
+    int bGrader = -1;
 
-    /*
-        Sparar var motorn faktiskt står.
-        Eftersom startkalibreringen kör till 0/360-plattan,
-        börjar motorn i läge 1.
-    */
     int nuvarandeLage = 1;
 
     t5omsi();
@@ -52,12 +47,13 @@ int main(void) {
     Lcd_Init();
     LCD_Clear(BLACK);
 
+    LCD_ShowStr(0, 0, (u8 *)"Starting...", YELLOW, OPAQUE);
     LCD_Wait_On_Queue();
     delay_ms(500);
 
     /* start I2C */
     sht31_init_setup();
-    vind_init_setup();
+    vind_init_setup(); // Only initialize once at startup
     led_init();
 
     /* Initsera Motor */
@@ -76,25 +72,29 @@ int main(void) {
 
     T1powerUpInitPWM(0x0C);
 
-    /*
-        Startkalibrering:
-        Motorn roterar tills den hittar 0/360-plattan.
-    */
-    do {
-        T1setPWMch3((15 / 100.0) * 16000);
-        T1setPWMch2(0);
 
-        lage = gpio_input_bit_get(GPIOB, GPIO_PIN_11);
-    } while (lage == 0);
-
-    T1setPWMch2(1);
-    T1setPWMch3(1);
 
     nuvarandeLage = 1;
+   
+
 
     while (1) {
+
+    LCD_Clear(BLACK);
+    LCD_ShowStr(0, 0, (u8 *)"Loop start", GREEN, OPAQUE);
+    LCD_Wait_On_Queue();
         ret_sht35 = sht31_read(&temp_raw, &hum_raw);
+
+        LCD_ShowStr(0, 15, (u8 *)"VINDSENSORN HAR STANNAT", GREEN, OPAQUE);
+        LCD_Wait_On_Queue();
+
         ret_vind = vind_read_raw(&vind_raw);
+      
+        LCD_ShowStr(0, 30, (u8 *)"After wind", GREEN, OPAQUE);
+        LCD_Wait_On_Queue();
+
+
+  
 
         LCD_Clear(BLACK);
 
@@ -298,7 +298,7 @@ void rotera(int pinMal, int nuvarandeLage) {
                     T1setPWMch3((5 / 100.0) * 16000);
                     T1setPWMch2(0);
 
-                    vinkel = gpio_input_bit_get(GPIOB, GPIO_PIN_9);
+                    vinkel = gpio_input_bit_get(GPIOA, GPIO_PIN_7);
                 } while (vinkel == 0);
 
                 T1setPWMch2(1);
