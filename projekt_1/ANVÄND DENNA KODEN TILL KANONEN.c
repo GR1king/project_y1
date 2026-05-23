@@ -150,7 +150,7 @@ int main(void) {
         LCD_Wait_On_Queue();
 
         ////////////////////////////////// motor logik //////////////////////////////////
-
+        delay_ms(1000);
         grader = vind_deg;
 
         if (grader != bGrader) {
@@ -209,7 +209,7 @@ void rotera(int pinMal, int nuvarandeLage) {
         case 1:
             if (pinMal < nuvarandeLage) {
                 do {
-                    T1setPWMch2((5 / 100.0) * 16000);
+                    T1setPWMch2((7 / 100.0) * 16000);
                     T1setPWMch3(0);
 
                     vinkel = gpio_input_bit_get(GPIOB, GPIO_PIN_11);
@@ -220,7 +220,7 @@ void rotera(int pinMal, int nuvarandeLage) {
                 break;
             } else {
                 do {
-                    T1setPWMch3((5 / 100.0) * 16000);
+                    T1setPWMch3((7 / 100.0) * 16000);
                     T1setPWMch2(0);
 
                     vinkel = gpio_input_bit_get(GPIOB, GPIO_PIN_11);
@@ -234,7 +234,7 @@ void rotera(int pinMal, int nuvarandeLage) {
         case 8:
             if (pinMal < nuvarandeLage) {
                 do {
-                    T1setPWMch2((5 / 100.0) * 16000);
+                    T1setPWMch2((7 / 100.0) * 16000);
                     T1setPWMch3(0);
 
                     vinkel = gpio_input_bit_get(GPIOA, GPIO_PIN_5);
@@ -245,7 +245,7 @@ void rotera(int pinMal, int nuvarandeLage) {
                 break;
             } else {
                 do {
-                    T1setPWMch3((5 / 100.0) * 16000);
+                    T1setPWMch3((7 / 100.0) * 16000);
                     T1setPWMch2(0);
 
                     vinkel = gpio_input_bit_get(GPIOA, GPIO_PIN_5);
@@ -259,7 +259,7 @@ void rotera(int pinMal, int nuvarandeLage) {
         case 7:
             if (pinMal < nuvarandeLage) {
                 do {
-                    T1setPWMch2((5 / 100.0) * 16000);
+                    T1setPWMch2((7 / 100.0) * 16000);
                     T1setPWMch3(0);
 
                     vinkel = gpio_input_bit_get(GPIOB, GPIO_PIN_8);
@@ -270,7 +270,7 @@ void rotera(int pinMal, int nuvarandeLage) {
                 break;
             } else {
                 do {
-                    T1setPWMch3((5 / 100.0) * 16000);
+                    T1setPWMch3((7 / 100.0) * 16000);
                     T1setPWMch2(0);
 
                     vinkel = gpio_input_bit_get(GPIOB, GPIO_PIN_8);
@@ -284,7 +284,7 @@ void rotera(int pinMal, int nuvarandeLage) {
         case 6:
             if (pinMal < nuvarandeLage) {
                 do {
-                    T1setPWMch2((5 / 100.0) * 16000);
+                    T1setPWMch2((7 / 100.0) * 16000);
                     T1setPWMch3(0);
 
                     vinkel = gpio_input_bit_get(GPIOA, GPIO_PIN_7);
@@ -295,7 +295,7 @@ void rotera(int pinMal, int nuvarandeLage) {
                 break;
             } else {
                 do {
-                    T1setPWMch3((5 / 100.0) * 16000);
+                    T1setPWMch3((7 / 100.0) * 16000);
                     T1setPWMch2(0);
 
                     vinkel = gpio_input_bit_get(GPIOA, GPIO_PIN_7);
@@ -309,7 +309,7 @@ void rotera(int pinMal, int nuvarandeLage) {
         case 5:
             if (pinMal < nuvarandeLage) {
                 do {
-                    T1setPWMch2((5 / 100.0) * 16000);
+                    T1setPWMch2((7 / 100.0) * 16000);
                     T1setPWMch3(0);
 
                     vinkel = gpio_input_bit_get(GPIOB, GPIO_PIN_5);
@@ -320,7 +320,7 @@ void rotera(int pinMal, int nuvarandeLage) {
                 break;
             } else {
                 do {
-                    T1setPWMch3((5 / 100.0) * 16000);
+                    T1setPWMch3((7 / 100.0) * 16000);
                     T1setPWMch2(0);
 
                     vinkel = gpio_input_bit_get(GPIOB, GPIO_PIN_5);
@@ -334,7 +334,7 @@ void rotera(int pinMal, int nuvarandeLage) {
         case 4:
             if (pinMal < nuvarandeLage) {
                 do {
-                    T1setPWMch2((5 / 100.0) * 16000);
+                    T1setPWMch2((7 / 100.0) * 16000);
                     T1setPWMch3(0);
 
                     vinkel = gpio_input_bit_get(GPIOB, GPIO_PIN_4);
@@ -345,7 +345,7 @@ void rotera(int pinMal, int nuvarandeLage) {
                 break;
             } else {
                 do {
-                    T1setPWMch3((5 / 100.0) * 16000);
+                    T1setPWMch3((7 / 100.0) * 16000);
                     T1setPWMch2(0);
 
                     vinkel = gpio_input_bit_get(GPIOB, GPIO_PIN_4);
@@ -359,7 +359,7 @@ void rotera(int pinMal, int nuvarandeLage) {
         case 2:
             if (pinMal < nuvarandeLage) {
                 do {
-                    T1setPWMch2((5 / 100.0) * 16000);
+                    T1setPWMch2((7 / 100.0) * 16000);
                     T1setPWMch3(0);
 
                     vinkel = gpio_input_bit_get(GPIOB, GPIO_PIN_12);
@@ -370,7 +370,7 @@ void rotera(int pinMal, int nuvarandeLage) {
                 break;
             } else {
                 do {
-                    T1setPWMch3((5 / 100.0) * 16000);
+                    T1setPWMch3((7 / 100.0) * 16000);
                     T1setPWMch2(0);
 
                     vinkel = gpio_input_bit_get(GPIOB, GPIO_PIN_12);
@@ -384,7 +384,7 @@ void rotera(int pinMal, int nuvarandeLage) {
         case 3:
             if (pinMal < nuvarandeLage) {
                 do {
-                    T1setPWMch2((5 / 100.0) * 16000);
+                    T1setPWMch2((7 / 100.0) * 16000);
                     T1setPWMch3(0);
 
                     vinkel = gpio_input_bit_get(GPIOA, GPIO_PIN_8);
@@ -395,7 +395,7 @@ void rotera(int pinMal, int nuvarandeLage) {
                 break;
             } else {
                 do {
-                    T1setPWMch3((5 / 100.0) * 16000);
+                    T1setPWMch3((7 / 100.0) * 16000);
                     T1setPWMch2(0);
 
                     vinkel = gpio_input_bit_get(GPIOA, GPIO_PIN_8);
