@@ -153,35 +153,35 @@ int main(void) {
         if (grader != bGrader) {
             bGrader = grader;
 
-            if (grader >= 0 && grader < 45) {
+            if (grader >= 0 && grader < 22.5) {
                 onskatLage = 1;
             }
 
-            if (grader >= 45 && grader < 90) {
+            if (grader >= 22.5 && grader < 67.5) {
                 onskatLage = 2;
             }
 
-            if (grader >= 90 && grader < 135) {
+            if (grader >= 67.5 && grader < 112.5) {
                 onskatLage = 3;
             }
 
-            if (grader >= 135 && grader < 180) {
+            if (grader >= 112.5 && grader < 202.5) {
                 onskatLage = 4;
             }
 
-            if (grader >= 180 && grader < 225) {
+            if (grader >= 202.5 && grader < 247.5) {
                 onskatLage = 5;
             }
 
-            if (grader >= 225 && grader < 270) {
+            if (grader >= 247.5 && grader < 292.5) {
                 onskatLage = 6;
             }
 
-            if (grader >= 270 && grader < 315) {
+            if (grader >= 292.5 && grader < 337.5) {
                 onskatLage = 7;
             }
 
-            if (grader >= 315 && grader < 360) {
+            if (grader >= 337.5 && grader < 359) {
                 onskatLage = 8;
             }
 
@@ -191,6 +191,7 @@ int main(void) {
             }
         }
 
+        LCD_Clear(BLACK);
         ////////////////////////////////////////////////////////////////////////////////
     }
 }
