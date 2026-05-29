@@ -58,6 +58,10 @@ void T1powerUpInitPWM(uint16_t ch){
     timer_enable(TIMER1);
 }
 
+void T1setPWMch3(int value){
+    timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_3,value);
+}
+
 void T1setPWMch2(int value){
     timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_2,value);
 }
