@@ -3,5 +3,6 @@ void T1powerUpInitPWM(uint16_t ch);
 
 void T1setPWMch1(int value);
 void T1setPWMch2(int value);
+void T1setPWMch3(int value);
 
 void T1setPWMmotorB(int throttel);
