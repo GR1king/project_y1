@@ -27,20 +27,20 @@ The firmware is developed for the GD32VF103 (RISC-V) microcontroller and utilize
 * **User Feedback:** Outputs current status and environmental data to an ST7735 LCD screen.
 
 <p align="center">
-  <img src="st7735_lcd.png" alt="ST7735 LCD" width="300"/>
+  <img src="images/st7735_lcd.png" alt="ST7735 LCD" width="300"/>
 </p>
 
 ---
 
 ## Hardware
 <p align="center">
-  <img src="kicad_schematic.png" alt="Kicad Schematic" width="600"/>
+  <img src="images/kicad_schematic.png" alt="Kicad Schematic" width="600"/>
   <br>
   <em>Kicad schematic showing how the Microcontroller is connected to the DC-motor and the LCD.</em>
 </p>
 
 <p align="center">
-  <img src="maxon_motor.png" alt="Maxon DC Motor" width="250"/>
+  <img src="images/maxon_motor.png" alt="Maxon DC Motor" width="250"/>
   <br>
   <em>Maxon DC motor used to drive the rotational assembly.</em>
 </p>
@@ -49,16 +49,16 @@ The firmware is developed for the GD32VF103 (RISC-V) microcontroller and utilize
 
 ## 3D-Design
 <p align="center">
-  <img src="design_holistic.png" alt="Design prototype Holistic perspective" width="45%" />
-  <img src="design_side.png" alt="Design prototype Side view" width="45%" />
+  <img src="images/design_holistic.png" alt="Design prototype Holistic perspective" width="45%" />
+  <img src="images/design_side.png" alt="Design prototype Side view" width="45%" />
 </p>
 <p align="center">
   <em>Design prototype Holistic perspective &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Design prototype: Side view (CAD: SIDOVY)</em>
 </p>
 
 <p align="center">
-  <img src="design_top.png" alt="Design prototype Top view" width="45%" />
-  <img src="physical_prototype.png" alt="Design Physical prototype" width="45%" />
+  <img src="images/design_top.png" alt="Design prototype Top view" width="45%" />
+  <img src="images/physical_prototype.png" alt="Design Physical prototype" width="45%" />
 </p>
 <p align="center">
   <em>Design prototype: Top view (CAD: TOPPVY) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Design: Physical prototype</em>
@@ -79,7 +79,7 @@ The table below illustrates the operational tolerances of our snow cannon, calcu
 | **+2** | -3.2 | -2.8 | -2.3 | -1.8 | -1.2 | -0.5 | 0.2 | 1.0 | 1.9 |
 | **+4** | -1.8 | -1.3 | -0.7 | -0.1 | 0.6 | 1.4 | 2.2 | 3.0 | 3.9 |
 
-> **Operational Status Key:** Excellent ($<-8^{\circ}C$), Good (-8 to $-5^{\circ}C$), Marginal (-5 to $-2^{\circ}C$), Unrunnable ($>-2^{\circ}C$)
+> **Operational Status Key:** Excellent ($< -8^{\circ}C$), Good (-8 to $-5^{\circ}C$), Marginal (-5 to $-2^{\circ}C$), Unrunnable ($> -2^{\circ}C$)
 
 ---
 
