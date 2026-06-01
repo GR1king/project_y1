@@ -1,7 +1,7 @@
 # Automated Snow Cannon Control Systems
 
 ## About
-Second year electrical engineering project: An automated control system for snow cannons. The system optimizes artificial snow production by monitoring climate conditions and wind direction using a GD32VF103 (RISC-V) MCU on a Longan Nano board. It features a motorized base for automatic alignment and real-time data visualization on an ST7735 LCD.
+First year electrical engineering project: An automated control system for snow cannons. The system optimizes artificial snow production by monitoring climate conditions and wind direction using a GD32VF103 (RISC-V) MCU on a Longan Nano board. It features a motorized base for automatic alignment and real-time data visualization on an ST7735 LCD.
 
 ---
 
